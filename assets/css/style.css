@@ -2450,11 +2450,11 @@ section {
 
 @media screen and (-ms-high-contrast: black-on-white) {
   .alt-downloads .download-icon-accessible {
-      display: inline
+    display: inline
   }
 
   .alt-downloads .download-icon {
-      display: none
+    display: none
   }
 }
 
@@ -2511,7 +2511,7 @@ section {
 
 @media screen and (-ms-high-contrast: white-on-black) {
   .alt-downloads .logo.mac {
-      background-image: url("../img/apple-logo-inverted.svg")
+    background-image: url("../img/apple-logo-inverted.svg")
   }
 }
 
@@ -2532,6 +2532,7 @@ section {
   box-shadow: 0px 5px 30px rgba(65, 84, 241, 0.4);
   border: 0px;
 }
+
 .alt-downloads .link-button .download-icon {
   transition: 0.3s;
 }
@@ -2544,7 +2545,7 @@ section {
 .alt-downloads .link-button small {
   display: block;
   margin-top: .75rem;
-  color: rgba(255,255,255,.9);
+  color: rgba(255, 255, 255, .9);
   font-size: 12px
 }
 
@@ -2563,7 +2564,8 @@ section {
   outline-offset: 1px
 }
 
-.alt-downloads .link-button[data-os=linux64_deb],.alt-downloads .link-button[data-os=linux64_rpm] {
+.alt-downloads .link-button[data-os=linux64_deb],
+.alt-downloads .link-button[data-os=linux64_rpm] {
   width: 147px
 }
 
@@ -2575,7 +2577,7 @@ section {
 
 @media screen and (-ms-high-contrast: active) {
   .alt-downloads .link-button {
-      border: 2px #fff solid
+    border: 2px #fff solid
   }
 }
 
@@ -2614,8 +2616,9 @@ section {
   color: #242424
 }
 
-button, .link-button {
-  font-family: "Segoe UI","Helvetica Neue","Helvetica",Arial,sans-serif;
+button,
+.link-button {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
   padding: 15px 35px;
@@ -2640,8 +2643,9 @@ button, .link-button {
 } */
 
 
-button,.link-button {
-  font-family: "Segoe UI","Helvetica Neue","Helvetica",Arial,sans-serif;
+button,
+.link-button {
+  font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
   padding: 15px 35px;
@@ -2690,7 +2694,7 @@ button,.link-button {
 
 @media(min-width: 1200px) {
   .alt-downloads .terms {
-      padding:20px 20%
+    padding: 20px 20%
   }
 }
 
@@ -2710,25 +2714,38 @@ button,.link-button {
   width: 47%
 }
 
-#alt-downloads .win-downloads,#alt-downloads .linux-downloads,#alt-downloads .mac-downloads {
+#alt-downloads .win-downloads,
+#alt-downloads .linux-downloads,
+#alt-downloads .mac-downloads {
   margin-top: 16px;
   margin-left: auto;
   margin-right: auto
 }
 
-#alt-downloads table.win-downloads col:nth-of-type(1),.insiders-builds table.win-downloads col:nth-of-type(1) {
+#alt-downloads table.win-downloads col:nth-of-type(1),
+.insiders-builds table.win-downloads col:nth-of-type(1) {
   width: 135px
 }
 
-#alt-downloads table.linux-downloads col:nth-of-type(1),.insiders-builds table.linux-downloads col:nth-of-type(1) {
+#alt-downloads table.linux-downloads col:nth-of-type(1),
+.insiders-builds table.linux-downloads col:nth-of-type(1) {
   width: 75px
 }
 
-#alt-downloads table.win-downloads col:nth-of-type(2),#alt-downloads table.win-downloads col:nth-of-type(3),#alt-downloads table.linux-downloads col:nth-of-type(2),#alt-downloads table.linux-downloads col:nth-of-type(3),.insiders-builds table.win-downloads col:nth-of-type(2),.insiders-builds table.win-downloads col:nth-of-type(3),.insiders-builds table.linux-downloads col:nth-of-type(2),.insiders-builds table.linux-downloads col:nth-of-type(3) {
+#alt-downloads table.win-downloads col:nth-of-type(2),
+#alt-downloads table.win-downloads col:nth-of-type(3),
+#alt-downloads table.linux-downloads col:nth-of-type(2),
+#alt-downloads table.linux-downloads col:nth-of-type(3),
+.insiders-builds table.win-downloads col:nth-of-type(2),
+.insiders-builds table.win-downloads col:nth-of-type(3),
+.insiders-builds table.linux-downloads col:nth-of-type(2),
+.insiders-builds table.linux-downloads col:nth-of-type(3) {
   width: 45px
 }
 
-.download-btns.insiders-builds .win-downloads,.download-btns.insiders-builds .linux-downloads,.download-btns.insiders-builds .mac-downloads {
+.download-btns.insiders-builds .win-downloads,
+.download-btns.insiders-builds .linux-downloads,
+.download-btns.insiders-builds .mac-downloads {
   margin: 16px auto 20px auto
 }
 
@@ -2753,7 +2770,7 @@ button,.link-button {
 
 @media screen and (-ms-high-contrast: active) {
   .download-btns button {
-      border: 2px solid #fff
+    border: 2px solid #fff
   }
 }
 
@@ -2767,7 +2784,7 @@ button,.link-button {
 
 .download-btns small {
   font-size: 1.2rem;
-  color: rgba(255,255,255,.9);
+  color: rgba(255, 255, 255, .9);
   display: block
 }
 
@@ -2794,18 +2811,38 @@ button,.link-button {
 }
 
 
-.rotate{
+.rotate {
   transform: rotate(360deg);
   transition: all 0.5s;
   animation: rotation 5s linear infinite;
 }
 
 @keyframes rotation {
-0% {
-  transform: rotate(0deg);
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-100% {
-  transform: rotate(360deg);
+.select-language-box{
+  padding: 10px 0 10px 20px;
 }
+.select-language {
+  display: flex;
+  cursor: pointer;
+
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  color: #013289;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+.select-language:hover {
+  color: #4154f1;
 }

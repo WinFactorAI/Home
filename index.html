@@ -7,7 +7,8 @@
 
   <title>胜利因子-数据库审计系统-企业文件审计系统</title>
   <meta content="北京胜利因子科技有限公司,胜利因子,Next-FileFlow, 企业文件审计系统, 内外网文件传输, 文件安全管理, 轻量级企业解决方案, 数据合规审计" name="keywords">
-  <meta content="Next-FileFlow, Next FileFlow 支持审批流程，大文件续传，光驱读写刻录。内网云盘等功能。敏感规则与AI大模型扫描，邮件告警。, Next-DBM, 企业轻量级数据库审计版本管理系统, 胜利因子, 胜利因子官网, 北京胜利因子科技有限公司"
+  <meta
+    content="Next-FileFlow, Next FileFlow 支持审批流程，大文件续传，光驱读写刻录。内网云盘等功能。敏感规则与AI大模型扫描，邮件告警。, Next-DBM, 企业轻量级数据库审计版本管理系统, 胜利因子, 胜利因子官网, 北京胜利因子科技有限公司"
     name="description">
 
 
@@ -30,6 +31,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  
   <script>
     if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       var _hmt = _hmt || [];
@@ -103,14 +105,15 @@
             </ul>
           </li> -->
           <!-- <li class="dropdown"><a href="https://doc.aiputing.com" target="_blank" rel="noreferrer"><span>文档中心</span></a></li> -->
-          <li class="dropdown"><a href="https://doc.aiputing.com" target="_blank"><span>文档中心</span> <i class="bi bi-chevron-down"></i></a>
-              <ul>
+          <li class="dropdown"><a href="https://doc.aiputing.com" target="_blank"><span>文档中心</span> <i
+                class="bi bi-chevron-down"></i></a>
+            <ul>
               <li><a href="http://doc.aiputing.com/fileflow" target="_blank" rel="noreferrer">Next-FileFlow
                   <br />企业轻量级内外网文件审计系统</a></li>
-              <li><a href="http://doc.aiputing.com/dbm" target="_blank" rel="noreferrer">Next-DBM 
+              <li><a href="http://doc.aiputing.com/dbm" target="_blank" rel="noreferrer">Next-DBM
                   <br />企业轻量级数据库审计版本管理系统</a>
               </li>
-              </ul>
+            </ul>
           </li>
           <!-- <li class="dropdown"><a href="#"><span>知识星球</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -152,6 +155,13 @@
           <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
           <li><a class="getstarted scrollto" href="https://license.aiputing.com/#/login">登录</a></li>
           <li><a className="nav-link scrollto" href="https://license.aiputing.com/#/register">注册</a></li>
+          <li class="dropdown select-language-box">
+            <select id="languageSelect" class="nav-link scrollto select-language" onchange="handleI18nClick(event)">
+              <option value="zh-CN">简体中文</option>
+              <option value="zh-TW">繁体中文</option>
+              <option value="en-US">English</option>
+            </select>
+          </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -168,7 +178,8 @@
           <h1 data-aos="fade-up">胜利因子</h1>
           <h2 data-aos="fade-up" data-aos-delay="400"> aiputing.com</h2>
           <!-- <h3 data-aos="fade-up" data-aos-delay="600" id="version" style="color: #4154f1;margin-top: 10px;"></h3> -->
-          <h3 data-aos="fade-up" data-aos-delay="600" style="color: #4154f1;margin-top: 10px;">数据库安全 | AI内外网文件传输安全解决方案</h3>
+          <h3 data-aos="fade-up" data-aos-delay="600" style="color: #4154f1;margin-top: 10px;">数据库安全 | AI内外网文件传输安全解决方案
+          </h3>
 
 
           <div data-aos="fade-up" data-aos-delay="600">
@@ -213,8 +224,7 @@
               <div class="text-center text-lg-start">
                 <a href="https://license.aiputing.com/#/index"
                   class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center"
-                  target="_blank"
-                  >
+                  target="_blank">
                   <span>更多产品</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -243,7 +253,7 @@
 
         <div class="row">
 
-          <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200" >
+          <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
             <div class="box">
               <a href="https://license.aiputing.com/#/pricing?lm=next-dbm" target="_blank">
                 <img src="https://f.aiputing.com/raw/static/Next-DBM/1.png" class="img-fluid" alt="">
@@ -528,7 +538,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400"  >
+                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
                   <i class="ri-command-line"></i>
                   <div>
                     <h4>统一身份管控、LDAP集成、RBAC权限细粒度控制</h4>
@@ -536,7 +546,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500"  >
+                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
                   <i class="ri-radar-line"></i>
                   <div>
                     <h4>支持IP黑白名单控制、时间段控制</h4>
@@ -1533,11 +1543,11 @@
               <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div> -->
             <div class="social-links mt-3" style="text-align: center; width: 120px;float: left;">
-              <img src="assets/img/weixinq.png" width="100px" height="100px" style="border:0px;"/><br>
+              <img src="assets/img/weixinq.png" width="100px" height="100px" style="border:0px;" /><br>
               <div style="text-align: center;">微信群</div>
             </div>
             <div class="social-links mt-3" style="text-align: center; width: 120px;float: left;">
-              <img src="assets/img/qq.jpg" width="100px" height="100px" style="border:0px;"/><br>
+              <img src="assets/img/qq.jpg" width="100px" height="100px" style="border:0px;" /><br>
               <div style="text-align: center;">QQ群:903716010</div>
             </div>
           </div>
@@ -1545,10 +1555,12 @@
           <div class="col-lg-2 col-6 footer-links">
             <h4>GitHub</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="https://github.com/WinFactorAI" target="_blank" >问题</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="https://github.com/WinFactorAI/Next-FileFlow/releases" target="_blank">历史版本</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="https://github.com/WinFactorAI" target="_blank">问题</a>
+              </li>
+              <li><i class="bi bi-chevron-right"></i> <a href="https://github.com/WinFactorAI/Next-FileFlow/releases"
+                  target="_blank">历史版本</a></li>
               <!-- <li><i class="bi bi-chevron-right"></i> <a href="#">社区</a></li> -->
-             
+
               <!-- <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
             </ul>
@@ -1558,8 +1570,10 @@
             <h4>Gitee</h4>
             <ul>
               <!-- <li><i class="bi bi-chevron-right" class=""></i> <a href="#">社区</a></li> -->
-              <li><i class="bi bi-chevron-right"></i> <a href="https://gitee.com/WinFactorAI" target="_blank">问题</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="https://gitee.com/WinFactorAI/next-file-flow/releases" target="_blank">历史版本</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="https://gitee.com/WinFactorAI" target="_blank">问题</a>
+              </li>
+              <li><i class="bi bi-chevron-right"></i> <a href="https://gitee.com/WinFactorAI/next-file-flow/releases"
+                  target="_blank">历史版本</a></li>
 
             </ul>
           </div>
@@ -1570,8 +1584,9 @@
               <!--A108 Adam Street <br>
               New York, NY 535022<br>
               United States <br><br>-->
-              <strong>服务号:</strong><br><img src="assets/img/winFactor.jpg" width="100px" height="100px" style="border:0px;"/><br>
-              <strong>Wexin:</strong>  胜利因子<br>
+              <strong>服务号:</strong><br><img src="assets/img/winFactor.jpg" width="100px" height="100px"
+                style="border:0px;" /><br>
+              <strong>Wexin:</strong> 胜利因子<br>
               <strong>Email:</strong> business@aiputing.com<br>
             </p>
 
