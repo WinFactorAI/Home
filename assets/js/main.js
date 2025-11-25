@@ -5,13 +5,111 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-(function() {
+(function () {
   "use strict";
 
+  // ============ 全局变量 ============
+  window.translations = {};     // 存放当前语言包
+  window.currentLang = "zh-CN"; // 默认语言
+
+  // ============ 获取要加载的语言 ============
+  function detectLang() {
+    // 1. URL 参数 ?lang=en-US
+    const params = new URLSearchParams(location.search);
+    const urlLang = params.get("lang");
+    if (urlLang && ["zh-CN", "en-US", "zh-TW"].includes(urlLang)) {
+      localStorage.setItem("app_lang", urlLang);
+      return urlLang;
+    }
+
+    // 2. localStorage 记住的上次选择
+    const saved = localStorage.getItem("app_lang");
+    if (saved && ["zh-CN", "en-US", "zh-TW"].includes(saved)) {
+      return saved;
+    }
+
+    // 3. 浏览器语言兜底
+    const browser = (navigator.language || navigator.userLanguage || "zh-CN")
+      .replace("-", "_");
+
+    if (["zh-CN", "en-US", "zh-TW"].includes(browser)) {
+      return browser;
+    }
+
+    // 4. 最终兜底！永远返回 zh-CN，绝不会 undefined
+    return "zh-CN";
+  }
+
+  window.currentLang = detectLang();
+
+  // ============ 动态加载语言文件（关键！） ============
+  function loadLanguage(lang) {
+    const script = document.createElement("script");
+    script.src = `assets/lang/${lang}.js?t=${Date.now()}`; // 防缓存
+    script.onload = function () {
+      // JSON 文件会被当作 JS 执行，内容必须是：window.__LANG__ = { ... }
+      if (window.__LANG__) {
+        window.translations = window.__LANG__;
+        delete window.__LANG__; // 清理
+        applyTranslations();
+        highlightActiveLang();
+      }
+    };
+    script.onerror = function () {
+      console.error("加载语言文件失败:", lang);
+      // 兜底用简体中文
+      window.translations = { title: "订单管理", submit: "提交" };
+      applyTranslations();
+    };
+    document.head.appendChild(script);
+  }
+
+  // ============ 翻译函数 ============
+  window.t = function (key) {
+    return window.translations[key] || key;
+  };
+
+  // ============ 应用翻译 ============
+  function applyTranslations() {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (window.translations[key] !== undefined) {
+        el.textContent = window.translations[key];
+      }
+    });
+    const select = document.getElementById("languageSelect");
+    if (select) {
+      const savedLang = localStorage.getItem("app_lang") || currentLang || "zh-CN";
+      select.value = savedLang;  // 自动选中！
+    }
+  }
+
+  // ============ 高亮当前语言按钮 ============
+  function highlightActiveLang() {
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.lang === currentLang);
+    });
+  }
+
+  // ============ 切换语言 ============
+  window.changeLang = function (lang) {
+    localStorage.setItem("app_lang", lang);
+    location.reload();
+  };
+
+  // ============ 启动加载 ============
+  loadLanguage(currentLang);
+
+  window.handleI18nClick = function (e) {
+    changeLang(e.target.dataset.lang);
+  };
   /**
    * Easy selector helper function
    */
   const select = (el, all = false) => {
+    if (el === null) {
+      return
+    }
     el = el.trim()
     if (all) {
       return [...document.querySelectorAll(el)]
@@ -44,6 +142,8 @@
   let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
     let position = window.scrollY + 200
+    console.log(" navbarlinks ", navbarlinks);
+    if (!navbarlinks) return
     navbarlinks.forEach(navbarlink => {
       if (!navbarlink.hash) return
       let section = select(navbarlink.hash)
@@ -111,7 +211,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function (e) {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -120,7 +220,7 @@
   /**
    * Mobile nav dropdowns activate
    */
-  on('click', '.navbar .dropdown > a', function(e) {
+  on('click', '.navbar .dropdown > a', function (e) {
     if (select('#navbar').classList.contains('navbar-mobile')) {
       e.preventDefault()
       this.nextElementSibling.classList.toggle('dropdown-active')
@@ -130,7 +230,7 @@
   /**
    * Scrool with ofset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -205,9 +305,9 @@
 
       let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-flters li', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -286,22 +386,22 @@
   window.addEventListener('load', () => {
     aos_init();
     fetch('https://www.aiputing.com/releases/latest.json')
-    .then(response => {
-      // 检查网络请求是否成功
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      // 将响应转换为 JSON 格式
-      return response.json();
-    })
-    .then(data => {
-      data.version;
-      // 将data.version 写入到界面中通过id
-      document.getElementById("version").innerHTML = "最新版本 "+data.version;
-    });
+      .then(response => {
+        // 检查网络请求是否成功
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        // 将响应转换为 JSON 格式
+        return response.json();
+      })
+      .then(data => {
+        data.version;
+        // 将data.version 写入到界面中通过id
+        // document.getElementById("version").innerHTML = "最新版本 " + data.version;
+      });
   });
 
-  on('click', '.link-button,.platform-link', function(e) {
+  on('click', '.link-button,.platform-link', function (e) {
     // 定义一个变量来存储加载的 JSON 数据
     let versions;
 
@@ -327,14 +427,14 @@
         var u = navigator.userAgent;
         var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-        if(isAndroid){
+        if (isAndroid) {
           window.location.href = "https://www.pgyer.com/5Q1L";
         }
-        if(isiOS){
+        if (isiOS) {
           window.location.href = "https://www.pgyer.com/5Q1L";
         }
         // Windows x86 64
-        
+
         var platform = navigator.platform.toLowerCase();
         var userAgent = navigator.userAgent.toLowerCase();
 
@@ -355,84 +455,84 @@
         }
 
         console.log(os + "-" + arch);
-        if(dataArch == "auto"){
-          if ( dataOs == "win" && arch == "x86_64" ) {
+        if (dataArch == "auto") {
+          if (dataOs == "win" && arch == "x86_64") {
             window.open(versions.install["windows-x86_64"], "_blank");
           }
-          if ( dataOs == "win" && arch == "aarch64" ) {
+          if (dataOs == "win" && arch == "aarch64") {
             window.open(versions.install["windows-aarch64"], "_blank");
           }
-          if ( dataOs == "mac" && arch == "x86_64" ) {
+          if (dataOs == "mac" && arch == "x86_64") {
             window.open(versions.install["darwin-x86_64"], "_blank");
           }
-          if ( dataOs == "mac" && arch == "aarch64" ) {
+          if (dataOs == "mac" && arch == "aarch64") {
             window.open(versions.install["darwin-aarch64"], "_blank");
           }
-          if ( dataOs == "linux64_deb" && arch == "x86_64" ) {
-            window.location.href =  versions.install["linux-deb-x86_64"];
+          if (dataOs == "linux64_deb" && arch == "x86_64") {
+            window.location.href = versions.install["linux-deb-x86_64"];
           }
-          if ( dataOs == "linux64_deb" && arch == "aarch64" ) {
-            window.location.href =  versions.install["linux-deb-aarch64"];
-          }
-
-          if ( dataOs == "linux64_rpm" && arch == "x86_64" ) {
-            window.location.href =  versions.install["linux-rpm-x86_64"];
-          }
-          if ( dataOs == "linux64_rpm" && arch == "aarch64" ) {
-            window.location.href =  versions.install["linux-rpm-aarch64"];
+          if (dataOs == "linux64_deb" && arch == "aarch64") {
+            window.location.href = versions.install["linux-deb-aarch64"];
           }
 
-        }else {
-          if ( dataOs == "win64user" && dataArch == "x86_64" ) {
-            window.location.href =  versions.install["windows-x86_64"];
+          if (dataOs == "linux64_rpm" && arch == "x86_64") {
+            window.location.href = versions.install["linux-rpm-x86_64"];
           }
-          if ( dataOs == "win32arm64user" && dataArch == "aarch64" ) {
-            window.location.href =  versions.install["windows-aarch64"];
-          }
-          
-          if ( dataOs == "winzip" && dataArch == "x86_64" ) {
-            window.location.href =  versions.platforms["windows-x86_64"].url;
-          }
-          if ( dataOs == "win32arm64zip" && dataArch == "aarch64" ) {
-            window.location.href =  versions.platforms["windows-aarch64"].url;
+          if (dataOs == "linux64_rpm" && arch == "aarch64") {
+            window.location.href = versions.install["linux-rpm-aarch64"];
           }
 
+        } else {
+          if (dataOs == "win64user" && dataArch == "x86_64") {
+            window.location.href = versions.install["windows-x86_64"];
+          }
+          if (dataOs == "win32arm64user" && dataArch == "aarch64") {
+            window.location.href = versions.install["windows-aarch64"];
+          }
 
-          if ( dataOs == "darwinx64" && dataArch == "x86_64" ) {
-            window.location.href =  versions.install["darwin-x86_64"];
+          if (dataOs == "winzip" && dataArch == "x86_64") {
+            window.location.href = versions.platforms["windows-x86_64"].url;
           }
-          if ( dataOs == "darwinarm64" && dataArch == "aarch64" ) {
-            window.location.href =  versions.install["darwin-aarch64"];
-          }
-
-          if ( dataOs == "darwinx64tar" && dataArch == "x86_64" ) {
-            window.location.href =  versions.platforms["darwin-x86_64"].url;
-          }
-          if ( dataOs == "darwinarm64tar" && dataArch == "aarch64" ) {
-            window.location.href =  versions.platforms["darwin-aarch64"].url;
+          if (dataOs == "win32arm64zip" && dataArch == "aarch64") {
+            window.location.href = versions.platforms["windows-aarch64"].url;
           }
 
 
-          if ( dataOs == "linux64_deb" && dataArch == "x86_64" ) {
-            window.location.href =  versions.install["linux-deb-x86_64"];
+          if (dataOs == "darwinx64" && dataArch == "x86_64") {
+            window.location.href = versions.install["darwin-x86_64"];
           }
-          if ( dataOs == "linuxarm64_deb" && dataArch == "aarch64" ) {
-            window.location.href =  versions.install["linux-deb-aarch64"];
-          }
-
-          if ( dataOs == "linux64_rpm" && dataArch == "x86_64" ) {
-            window.location.href =  versions.isntall["linux-rpm-x86_64"];
-          }
-          if ( dataOs == "linuxarm64_rpm" && dataArch == "aarch64" ) {
-            window.location.href =  versions.install["linux-rpm-aarch64"];
+          if (dataOs == "darwinarm64" && dataArch == "aarch64") {
+            window.location.href = versions.install["darwin-aarch64"];
           }
 
-
-          if ( dataOs == "linux64tar" && dataArch == "x86_64" ) {
-            window.location.href =  versions.platforms["linux-x86_64"].url;
+          if (dataOs == "darwinx64tar" && dataArch == "x86_64") {
+            window.location.href = versions.platforms["darwin-x86_64"].url;
           }
-          if ( dataOs == "linuxarm64tar" && dataArch == "aarch64" ) {
-            window.location.href =  versions.platforms["linux-aarch64"].url;
+          if (dataOs == "darwinarm64tar" && dataArch == "aarch64") {
+            window.location.href = versions.platforms["darwin-aarch64"].url;
+          }
+
+
+          if (dataOs == "linux64_deb" && dataArch == "x86_64") {
+            window.location.href = versions.install["linux-deb-x86_64"];
+          }
+          if (dataOs == "linuxarm64_deb" && dataArch == "aarch64") {
+            window.location.href = versions.install["linux-deb-aarch64"];
+          }
+
+          if (dataOs == "linux64_rpm" && dataArch == "x86_64") {
+            window.location.href = versions.isntall["linux-rpm-x86_64"];
+          }
+          if (dataOs == "linuxarm64_rpm" && dataArch == "aarch64") {
+            window.location.href = versions.install["linux-rpm-aarch64"];
+          }
+
+
+          if (dataOs == "linux64tar" && dataArch == "x86_64") {
+            window.location.href = versions.platforms["linux-x86_64"].url;
+          }
+          if (dataOs == "linuxarm64tar" && dataArch == "aarch64") {
+            window.location.href = versions.platforms["linux-aarch64"].url;
           }
 
         }
@@ -441,11 +541,11 @@
         console.error('Fetch error:', error);
       });
 
- 
+
 
 
     //  alert("This is a link button");
-  },true);
+  }, true);
 
   /**
    * Initiate Pure Counter 

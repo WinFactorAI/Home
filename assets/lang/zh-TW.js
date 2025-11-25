@@ -1,0 +1,55 @@
+window.__LANG__ = {
+  "home": "首頁",
+  "product": "產品",
+  "pricing": "價格",
+  "docs": "文件中心",
+  "faq": "常見問題",
+  "about": "關於我們",
+  "login": "登入",
+  "register": "註冊",
+  "winFactor": "勝利因子",
+  "hero.subtitle": "資料庫安全 | AI內外網檔案傳輸安全解決方案",
+  "hero.content": "專業級資料庫安全審計解決方案，透過「權限-審計-版本」三維管控模型，協助企業實現資料安全的可知、可控、可溯",
+
+  "main.title": "我們擅長什麼？",
+  "main.subtitle": "專注於企業級資料安全的核心領域：",
+  "main.content1": "在 內外網檔案安全傳輸 領域，我們建構高可信通道，實現跨網路域檔案的 審批化傳輸、內容深度檢測與全鏈路審計；",
+  "main.content2": "在 資料庫安全審計 領域，我們提供 全方位的資料庫活動監控、即時威脅偵測與智慧審計分析，保障資料資產安全。",
+  "main.content3": "兩大能力深度融合，為企業築牢「資料使用」與「資料流動」雙維安全基座——讓核心資產在可控、可視、可溯中創造價值。",
+  "main.more": "更多產品",
+
+  "values.title": "產品屬性",
+  "values.subtitle": "多款軟體產品可供選擇",
+
+  "values.nd.subtitle": "企業輕量級資料庫審計版本管理系統",
+  "values.ff.subtitle": "企業輕量級內外網檔案審計系統",
+
+  "features.title": "特色功能",
+  "features.subtitle": "Next-DBM資料庫審計系統 讓協作更高效，讓資料風險歸零",
+  "features.nd.title1": "精準權限隔離",
+  "features.nd.title2": "統一身份管控",
+  "features.nd.title3": "全鏈路審計日誌",
+  "features.nd.title4": "資料庫表 版本化開發協作",
+  "features.nd.title5": "觸發式備份機制",
+  "features.nd.title6": "開發團隊任意場所均可連接",
+
+  "features.nd.content": "多種使用場景、不同業務情況下，存取資料時",
+  "features.nd.content1": "金融行業：銀行開發團隊存取交易資料",
+  "features.nd.content2": "政府機構：外包團隊參與系統維護",
+  "features.nd.content3": "醫療行業：醫療資料庫安全存取",
+  "features.nd.content4": "互聯網企業：運維團隊操作資料庫...",
+
+  "feature.ff.title": "Next-FileFlow企業檔案審計系統 助力檔案安全規範、高效流轉",
+  "feature.ff.content1": "內外網檔案傳輸-全流程審批（人工+AI模型自動雙模式審批）",
+  "feature.ff.content2": "支援大檔案高效傳輸、斷點續傳",
+  "feature.ff.content3": "物理媒介管控、安全內網雲盤、跨網閘同步",
+  "feature.ff.content4": "多維度檔案內容審計、AI大模型訓練、敏感規則自動檢測預警",
+  "feature.ff.content5": "統一身份管控、LDAP整合、RBAC權限細粒度控制",
+  "feature.ff.content6": "支援IP黑白名單控制、時段控制",
+
+  "footer.subtitle": "支援私有化部署客製，為企業生產賦能！",
+  "footer.wx.title": "微信群",
+  "footer.faq": "問題",
+  "footer.his": "歷史版本",
+  "footer.contact": "聯絡我們"
+};
