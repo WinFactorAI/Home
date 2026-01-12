@@ -114,7 +114,8 @@
     if (all) {
       return [...document.querySelectorAll(el)]
     } else {
-      return document.querySelector(el)
+      // return document.querySelector(el)
+      return null
     }
   }
 
@@ -142,7 +143,7 @@
   let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
     let position = window.scrollY + 200
-    console.log(" navbarlinks ", navbarlinks);
+    // console.log(" navbarlinks ", navbarlinks);
     if (!navbarlinks) return
     navbarlinks.forEach(navbarlink => {
       if (!navbarlink.hash) return
