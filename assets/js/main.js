@@ -114,8 +114,7 @@
     if (all) {
       return [...document.querySelectorAll(el)]
     } else {
-      // return document.querySelector(el)
-      return null
+      return document.querySelector(el)
     }
   }
 
