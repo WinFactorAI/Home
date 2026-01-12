@@ -111,6 +111,12 @@
       return
     }
     el = el.trim()
+    if (el.startsWith('#/')) {
+      return all ? [] : null
+    }
+    if (el.includes('#/index', '#/pricing')) {
+      return ""
+    }
     if (all) {
       return [...document.querySelectorAll(el)]
     } else {
